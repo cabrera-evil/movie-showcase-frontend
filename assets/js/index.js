@@ -26,7 +26,7 @@ async function loadGenres() {
         const genres = [];
         for (let i = 1; i < selectElement.children.length; i++) {
             const genre = {
-                id: selectElement.children[i].value,
+                id: parseInt(selectElement.children[i].value),
                 name: selectElement.children[i].textContent,
             };
             genres.push(genre);
@@ -56,7 +56,7 @@ function renderGenreOptions(genres) {
 
 function createMovieCard(movie, genres) {
     const card = document.createElement('div');
-    card.classList.add('card', 'w-96', 'bg-base-100', 'shadow-2xl', 'hover:shadow-2xl', 'hover:scale-105', 'transition-transform');
+    card.classList.add('card', 'bg-base-100', 'shadow-2xl', 'hover:shadow-2xl', 'hover:scale-105', 'transition-transform', 'mx-4');
 
     const figure = document.createElement('figure');
     const img = document.createElement('img');
@@ -79,6 +79,7 @@ function createMovieCard(movie, genres) {
     }
 
     const description = document.createElement('p');
+    movie.overview = movie.overview.length > 100 ? movie.overview.substring(0, 100) + '...' : movie.overview;
     description.textContent = movie.overview;
 
     const cardActions = document.createElement('div');
