@@ -1,8 +1,8 @@
 # Movie Showcase Frontend
 
-![](https://img.shields.io/github/last-commit/cabrera-evil/movie-showcase-frontend/master)
+![](https://img.shields.io/github/last-commit/cabrera-evil/movie-showcase-frontend)
 ![](https://img.shields.io/github/license/cabrera-evil/movie-showcase-frontend)
-![](https://img.shields.io/github/languages/top/cabrera-evil/movie-showcase-frontend?label=bash)
+![](https://img.shields.io/github/languages/top/cabrera-evil/movie-showcase-frontend)
 ![](https://img.shields.io/github/contributors/cabrera-evil/movie-showcase-frontend)
 
 Welcome to the Movie Showcase Frontend repository!
