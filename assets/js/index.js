@@ -5,6 +5,17 @@ async function main() {
     const movieService = MovieService.getInstance();
     const categoryService = CategoryService.getInstance();
 
+    await categoryService.find().then((categories) => {
+        const selectElement = document.querySelector('.select');
+        categories.genres.forEach((category) => {
+            const optionElement = document.createElement('option');
+            optionElement.value = category.id;
+            optionElement.textContent = category.name;
+            selectElement.appendChild(optionElement);
+        });
+    });
+
+
     await movieService.find().then((movies) => {
         const movieContainer = document.getElementById('movieContainer');
         movies.results.forEach((movie) => {
