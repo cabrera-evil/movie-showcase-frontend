@@ -26,10 +26,43 @@ export default class MovieService {
                 }
             };
 
-            await axios
+            return await axios
                 .request(options)
                 .then(function (response) {
-                    console.log(response.data);
+                    return response.data;
+                })
+                .catch(function (error) {
+                    console.error(error);
+                });
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+
+    async findByCategory(category) {
+        try {
+            const options = {
+                method: 'GET',
+                url: `${this.baseUrl}/discover/movie`,
+                params: {
+                    with_genres: category,
+                    include_adult: 'false',
+                    include_video: 'false',
+                    language: 'en-US',
+                    page: '1',
+                    sort_by: 'popularity.desc'
+                },
+                headers: {
+                    accept: 'application/json',
+                    Authorization: `Bearer ${this.apiToken}`
+                }
+            };
+
+            return await axios
+                .request(options)
+                .then(function (response) {
+                    return response.data;
                 })
                 .catch(function (error) {
                     console.error(error);
