@@ -1,6 +1,6 @@
 export default class MovieService {
     baseUrl = 'https://api.themoviedb.org/3';
-    apiToken = ''
+    apiToken = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjODAzMDVjOTVkOWMwOGFlNzM4NDI5YjM5ZmNmNmVjMSIsInN1YiI6IjY2Mzg3MmFjNjY1NjVhMDEyYzE2NWI3MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.EDovUFyYG9eWLue0KELCIjReQPCQh4F0X6Q3sQw3bFM'
     static instance;
 
     static getInstance() {
@@ -8,50 +8,16 @@ export default class MovieService {
         return MovieService.instance
     }
 
-    async find() {
+    async findByGenre(genre) {
         try {
             const options = {
                 method: 'GET',
                 url: `${this.baseUrl}/discover/movie`,
                 params: {
-                    include_adult: 'false',
-                    include_video: 'false',
-                    language: 'en-US',
+                    language: 'en',
                     page: '1',
-                    sort_by: 'popularity.desc'
-                },
-                headers: {
-                    accept: 'application/json',
-                    Authorization: `Bearer ${this.apiToken}`
-                }
-            };
-
-            return await axios
-                .request(options)
-                .then(function (response) {
-                    return response.data;
-                })
-                .catch(function (error) {
-                    console.error(error);
-                });
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
-
-    async findByCategory(category) {
-        try {
-            const options = {
-                method: 'GET',
-                url: `${this.baseUrl}/discover/movie`,
-                params: {
-                    with_genres: category,
-                    include_adult: 'false',
-                    include_video: 'false',
-                    language: 'en-US',
-                    page: '1',
-                    sort_by: 'popularity.desc'
+                    sort_by: 'popularity.desc',
+                    with_genres: genre
                 },
                 headers: {
                     accept: 'application/json',

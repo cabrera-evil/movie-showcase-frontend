@@ -1,11 +1,11 @@
-export default class CategoryService {
+export default class GenreService {
     baseUrl = 'https://api.themoviedb.org/3';
-    apiToken = ''
+    apiToken = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjODAzMDVjOTVkOWMwOGFlNzM4NDI5YjM5ZmNmNmVjMSIsInN1YiI6IjY2Mzg3MmFjNjY1NjVhMDEyYzE2NWI3MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.EDovUFyYG9eWLue0KELCIjReQPCQh4F0X6Q3sQw3bFM'
     static instance;
 
     static getInstance() {
-        CategoryService.instance ??= new CategoryService()
-        return CategoryService.instance
+        GenreService.instance ??= new GenreService()
+        return GenreService.instance
     }
 
     async find() {
