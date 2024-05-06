@@ -5,7 +5,7 @@ async function main() {
     const movieService = MovieService.getInstance();
     const categoryService = CategoryService.getInstance();
 
-    await categoryService.find().then((categories) => {
+    const categories = await categoryService.find().then((categories) => {
         const selectElement = document.querySelector('.select');
         categories.genres.forEach((category) => {
             const optionElement = document.createElement('option');
@@ -13,8 +13,8 @@ async function main() {
             optionElement.textContent = category.name;
             selectElement.appendChild(optionElement);
         });
+        return categories.genres;
     });
-
 
     await movieService.find().then((movies) => {
         const movieContainer = document.getElementById('movieContainer');
@@ -49,7 +49,7 @@ async function main() {
             movie.genre_ids.forEach((genreId) => {
                 const genreBadge = document.createElement('div');
                 genreBadge.classList.add('badge', 'badge-outline');
-                genreBadge.textContent = getGenreName(genreId);
+                genreBadge.textContent = matchCategories(genreId, categories);
                 cardActions.appendChild(genreBadge);
             });
 
@@ -65,15 +65,9 @@ async function main() {
     });
 }
 
-function getGenreName(genreId) {
-    switch (genreId) {
-        case 28:
-            return 'Action';
-        case 12:
-            return 'Adventure';
-        default:
-            return 'Other';
-    }
+function matchCategories(genreId, genres) {
+    const genre = genres.find((genre) => genre.id === genreId);
+    return genre.name;
 }
 
 main();
